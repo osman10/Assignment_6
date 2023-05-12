@@ -35,20 +35,21 @@ app.post('/books', (req, res) => {
 
 
 
-// app.delete('/books/:id', (req, res) => {
-//     const id = req.params.id; // get the unique id parameter from the request path
-//   // Find the item in the array with the specified unique id
-//   const itemIndex = books.findIndex(books => books.id === id);
-  
-//   if (itemIndex === -1) {
-//     // If the item is not found, return a 404 status
-//     return res.status(404).send('Item not found');
-//   } else {
-//     // Remove the item from the array
-//     items.splice(itemIndex, 1);
-//     return res.send('Item deleted');
-//   }
-//  })
+app.delete('/books/:id', (req, res) => {
+    const id = req.params.id; // get the unique id parameter from the request path
+  // Find the item in the array with the specified unique id
+    const itemIndex = books.find(item => item.id === id);
+    const index = books.indexOf(itemIndex);
+   
+  if (itemIndex === -1) {
+    // If the item is not found, return a 404 status
+    return res.status(404).send('Item not found');
+  } else {
+    // Remove the item from the array
+    books.splice(index, 1);
+    return res.send('Item deleted');
+  }
+   })
 
 
 
